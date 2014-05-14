@@ -154,6 +154,7 @@ function Autocomplete(vocabulary) {
 
                 if (vocabulary[i].charAt(j) == word[j] || vocabulary[i].charAt(j).toUpperCase() == word[j] || vocabulary[i].charAt(j).toUpperCase() == word[j].toUpperCase()) {
 
+
                     suggest += 1;
                 }
 
