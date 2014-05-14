@@ -1,4 +1,4 @@
-Autocomlete.js
+Autocomplete.js
 ==============
 
 Simple autocomplete widget.
