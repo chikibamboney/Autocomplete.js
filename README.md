@@ -9,3 +9,6 @@ Simple autocomplete widget.
 
 
 FIRST COMMIT FROM LINUX COMMAND LINE
+
+
+SECOND COMMIT FROM EDITOR
