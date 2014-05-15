@@ -1,9 +1,15 @@
+"use strict";
+
 function Autocomplete(vocabulary) {
 
     var text = "";
     var suggestWords = [];
     var currActive = "";
     var k = -1;
+    var keyDown = 40;
+    var keyUp = 38;
+    var keyEnter = 13
+    var width = 500;
 
     var root = document.createElement("div");
     root.id = "autocomplete";
@@ -25,10 +31,14 @@ function Autocomplete(vocabulary) {
     button.innerHTML = "Search";
     button.addEventListener("click", function(e) {
 
-        var sendText = field.value;   
+        var sendText = field.value;
+
+        setValue(field.value);
 
         infoSend.innerHTML = sendText;
+
         infoSend.className = "toserver"
+
     });
 
     var completer = document.createElement("div");
@@ -43,10 +53,10 @@ function Autocomplete(vocabulary) {
 
         for (var m = 0; m < suggestWords.length; m++) {
 
-            document.getElementById("suggest_" + m).className = "";
+            document.getElementById("suggest_" + m).className = null;
         }
 
-        if (e.target.id != "variants") {
+        if (e.target.id !== "variants") {
             setActive(e.target.id);
         }
 
@@ -91,16 +101,15 @@ function Autocomplete(vocabulary) {
 
                 if (suggestWords.length) {
 
-                    if (currActive != "") {
+                    if (currActive) {
 
-                        if (e.keyCode == 13) {
+                        if (e.keyCode == keyEnter) {
 
                             setValue(currActive);
                         }
                     }
 
-
-                    if (e.keyCode == 40) {
+                    if (e.keyCode == keyDown) {
 
                         k++;
 
@@ -110,7 +119,8 @@ function Autocomplete(vocabulary) {
                         }
 
                         setHover();
-                    } else if (e.keyCode == 38) {
+
+                    } else if (e.keyCode == keyUp) {
 
                         k--;
 
@@ -130,7 +140,7 @@ function Autocomplete(vocabulary) {
 
     this.setWidth = function(awidth) {
 
-        var width = awidth || 300;
+        width = awidth || 300;
 
         if (width < 200) {
             width = 200;
@@ -140,7 +150,34 @@ function Autocomplete(vocabulary) {
         form.style.width = width - 44 + "px";
         field.style.width = width - 160 + "px";
         completer.style.width = width - 167 + "px";
+
+        this.saveParams();
     }
+
+    this.saveParams = function() {
+
+        var myWidht = width;
+
+        var myCookie = escape(myWidht);
+
+        var expiryDate = new Date();
+        expiryDate.setTime(expiryDate.getTime() + (60 * 10000));
+
+        document.cookie = "myCookie=" + myCookie + ";" + "expires=" + expiryDate.toGMTString() + ";"
+    };
+
+    this.getParams = function() {
+
+        var myCookieString = unescape(document.cookie);
+        var dataList = myCookieString.split("=");
+
+        if (dataList[0] === "myCookie") {
+
+            width = dataList[1];
+
+            this.setWidth(width);
+        }
+    };
 
     function findSuggestions(word) {
 
@@ -164,7 +201,7 @@ function Autocomplete(vocabulary) {
                     currArray.push(vocabulary[i]);
                 }
             }
-        } 
+        }
 
         suggestWords = currArray;
         showSuggestions();
@@ -173,11 +210,12 @@ function Autocomplete(vocabulary) {
     function showSuggestions() {
 
         completer.innerHTML = "";
-        completer.style.display = "none";
+
+        completer.className = "hide";
 
         if (suggestWords.length > 0) {
 
-            completer.style.display = "block";
+            completer.className = "show";
 
             for (var i = 0; i < suggestWords.length; i++) {
 
@@ -195,7 +233,7 @@ function Autocomplete(vocabulary) {
 
         for (var n = 0; n < arrlike.length; n++) {
 
-            arrlike[n].className = "";
+            arrlike[n].className = "null";
         }
 
         currActive = suggestWords[k];
@@ -213,7 +251,7 @@ function Autocomplete(vocabulary) {
         field.value = text;
 
         completer.innerHTML = "";
-        completer.style.display = "none";
+        completer.className = "hide";
         k = -1;
     }
 }
