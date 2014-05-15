@@ -12,7 +12,7 @@ function Autocomplete(vocabulary) {
 
     var titleEl = document.createElement("legend");
     titleEl.innerHTML = "Title";
-    
+
 
     var field = document.createElement("input");
     field.type = "text";
@@ -26,7 +26,10 @@ function Autocomplete(vocabulary) {
     button.innerHTML = "Search";
     button.addEventListener("click", function(e) {
 
-        var sendText = field.value;
+        var sendText = field.value;   
+
+//aaaa
+
         infoSend.innerHTML = sendText;
         infoSend.className = "toserver"
     });
