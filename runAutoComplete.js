@@ -16,11 +16,6 @@ form.setTitle("Simle autocomplete");
 form.appendMeToBody();
 form.enableMe();
 
-var form1 = new Autocomplete(usefulWords);
-
-form1.appendMeToBody();
-form1.enableMe();
-
 var buttonSet = document.createElement("div");
 buttonSet.className = "buttonSet";
 
@@ -39,19 +34,19 @@ inputAll.type = "text";
 buttonTitle.addEventListener("click", function(e) {
 
     var title = inputAll.value;
-    form1.setTitle(title);
+    form.setTitle(title);
 });
 
 buttonSetText.addEventListener("click", function(e) {
 
     var text = inputAll.value || "apply";
-    form1.setButtonText(text);
+    form.setButtonText(text);
 });
 
 buttonWidth.addEventListener("click", function(e) {
 
     var width = inputAll.value;
-    form1.setWidth(width);
+    form.setWidth(width);
 });
 
 buttonSet.appendChild(inputAll);
