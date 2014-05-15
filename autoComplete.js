@@ -12,6 +12,7 @@ function Autocomplete(vocabulary) {
 
     var titleEl = document.createElement("legend");
     titleEl.innerHTML = "Title";
+    
 
     var field = document.createElement("input");
     field.type = "text";
@@ -32,7 +33,7 @@ function Autocomplete(vocabulary) {
 
     var completer = document.createElement("div");
     completer.id = "variants";
-    
+
 
     completer.addEventListener("click", function(e) {
 
@@ -164,7 +165,7 @@ function Autocomplete(vocabulary) {
                     currArray.push(vocabulary[i]);
                 }
             }
-        }
+        } 
 
         suggestWords = currArray;
         showSuggestions();
@@ -277,3 +278,6 @@ buttonSet.appendChild(buttonTitle);
 buttonSet.appendChild(buttonSetText);
 buttonSet.appendChild(buttonWidth);
 document.body.appendChild(buttonSet);
+
+
+
