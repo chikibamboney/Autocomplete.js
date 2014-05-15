@@ -31,14 +31,20 @@ function Autocomplete(vocabulary) {
     button.innerHTML = "Search";
     button.addEventListener("click", function(e) {
 
-        var sendText = field.value;
+        if (field.value) {
 
-        setValue(field.value);
+            var sendText = field.value;
 
-        infoSend.innerHTML = sendText;
+            setValue(sendText);
 
-        infoSend.className = "toserver"
+            infoSend.innerHTML = sendText;
+            infoSend.className = "toserver";
+        } 
+        else {
 
+            infoSend.className = "none";
+            infoSend.innerHTML = "";
+        }
     });
 
     var completer = document.createElement("div");
