@@ -1,6 +1,7 @@
 
 
 var usefulWords = ["lift", "Lindsey", "Linda", "Linux", "list", "lirbrary", "Lihtenshtein", "Saab", "Volvo", "BMW", "apple", "orange", "donkey", "pineapple", "lemon", "peach", 'mon', 'tues', 'wed', 'thurs', 'fri', 'sat', 'sun', "John", "Susan", "Paul", "Alice"];
+"use strict";
 
 var h1 = document.createElement("h1");
 h1.innerHTML = "My vocabulary:";
@@ -15,6 +16,7 @@ var form = new Autocomplete(usefulWords);
 form.setTitle("Simle autocomplete");
 form.appendMeToBody();
 form.enableMe();
+form.getParams();
 
 var buttonSet = document.createElement("div");
 buttonSet.className = "buttonSet";
