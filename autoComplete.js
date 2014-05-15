@@ -32,6 +32,7 @@ function Autocomplete(vocabulary) {
 
     var completer = document.createElement("div");
     completer.id = "variants";
+    
 
     completer.addEventListener("click", function(e) {
 
